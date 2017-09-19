@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    select {
+      width: 150px;
+      height: 400px;
+      font: 24px/48px "宋体";
+      background-color: teal;
+    }
+  </style>
+</head>
+<body>
+
+<!-- multiple:多选 -->
+<select multiple id="s1">
+  <option>方方</option>
+  <option>韩韩</option>
+  <option>鹏鹏</option>
+</select>
+<button id="btn1"> &gt;&gt; </button>
+<button id="btn2"> &lt;&lt; </button>
+<button id="btn3"> &gt; </button>
+<button id="btn4"> &lt; </button>
+<select multiple id="s2">
+
+</select>
+
+<script>
+
+  //找对象
+  var btn1 = document.getElementById("btn1");
+  var btn2 = document.getElementById("btn2");
+  var btn3 = document.getElementById("btn3");
+  var btn4 = document.getElementById("btn4");
+  var s1 = document.getElementById("s1");
+  var s2 = document.getElementById("s2");
+
+  //如果用的是children获取的元素，即时更新的，长度是变化，所以我们需要使用i--抵消i++
+  //如果用的是querySelectorAll,不是即时更新的，长度是固定的，所以直接i++.
+
+
+  btn1.onclick = function () {
+    var options1 = s1.querySelectorAll("option");//s1下面所有的元素
+    for (var i = 0; i < options1.length; i++) {
+      s2.appendChild(options1[i]);
+    }
+  }
+
+  btn2.onclick = function () {
+    var options2 = s2.querySelectorAll("option");//s2下面所有的元素  0
+    for(var i = 0; i < options2.length; i++) {
+      s1.appendChild(options2[i]);
+    }
+  }
+
+
+  btn3.onclick = function () {
+    var options1 = s1.querySelectorAll("option");//s1下面所有的元素
+    for (var i = 0; i < options1.length; i++) {
+      if(options1[i].selected){
+        s2.appendChild(options1[i]);
+      }
+
+    }
+  }
+
+
+
+</script>
+
+</body>
+</html>
